@@ -26,4 +26,20 @@ public class ProductRepository {
         return this.entityManager.find(Product.class, id);
     }
 
+    @Transactional
+    public void deleteAll(){
+        entityManager.createQuery("delete from Product").executeUpdate();
+    }
+
+    @Transactional
+    public boolean deleteById(Long id) {
+        this.entityManager.remove(entityManager.find(Product.class, id));
+        return true;
+    }
+
+
+    @Transactional
+    public Product update(Product product) {
+        return entityManager.merge(product);
+    }
 }
