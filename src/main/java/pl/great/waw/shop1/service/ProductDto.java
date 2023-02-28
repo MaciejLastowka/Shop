@@ -66,6 +66,21 @@ public class ProductDto {
         this.updated = updated;
     }
 
+
+
+
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,16 +92,5 @@ public class ProductDto {
     @Override
     public int hashCode() {
         return Objects.hash(title, description, price, created, updated);
-    }
-
-    @Override
-    public String toString() {
-        return "ProductDto{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", created=" + created +
-                ", updated=" + updated +
-                '}';
     }
 }

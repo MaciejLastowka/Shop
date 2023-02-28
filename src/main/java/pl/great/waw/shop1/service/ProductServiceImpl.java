@@ -29,14 +29,13 @@ public class ProductServiceImpl {
 
 
     public ProductDto create(ProductDto productDto) {
-        //Product product = productRepository.create(productToDto(productDto));
-        //return productToDto(product);
-        return null;
+        Product product = productRepository.create(ProductToDtoMapper.dtoToProduct(productDto));
+        return productToDto(product);
     }
 
 
     public ProductDto update(ProductDto productDto) {
-        Product product = ProductToDtoMapper.DtoToProduct(productDto);
+        Product product = ProductToDtoMapper.dtoToProduct(productDto);
         productRepository.update(product);
         return productToDto(product);
     }
