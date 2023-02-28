@@ -27,7 +27,7 @@ public class ProductRepository {
     }
 
     @Transactional
-    public void deleteAll(){
+    public void deleteAll() {
         entityManager.createQuery("delete from Product").executeUpdate();
     }
 

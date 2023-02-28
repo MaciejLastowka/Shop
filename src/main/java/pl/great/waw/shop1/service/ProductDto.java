@@ -1,42 +1,29 @@
-package pl.great.waw.shop1.domain;
+package pl.great.waw.shop1.service;
 
-
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
-@Table(name = "PRODUCT")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+public class ProductDto {
+
     private String title;
     private String description;
     private BigDecimal price;
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public Product() {
+
+    public ProductDto() {
+
     }
 
+    public ProductDto(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
 
-    public Product(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.created = LocalDateTime.now();
-        this.updated = LocalDateTime.now();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.created = created;
+        this.updated = updated;
     }
 
     public String getTitle() {
@@ -83,23 +70,19 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id)
-                && Objects.equals(title, product.title)
-                && Objects.equals(description, product.description)
-                && Objects.equals(price, product.price) ;
+        ProductDto that = (ProductDto) o;
+        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(price, that.price) && Objects.equals(created, that.created) && Objects.equals(updated, that.updated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, price, created, updated);
+        return Objects.hash(title, description, price, created, updated);
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+        return "ProductDto{" +
+                "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", created=" + created +
