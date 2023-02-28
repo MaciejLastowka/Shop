@@ -9,13 +9,17 @@ public class ProductToDtoMapper {
         productDto.setDescription(product.getDescription());
         productDto.setTitle(product.getTitle());
         productDto.setPrice(product.getPrice());
-        productDto.setCreated(product.getCreated());
-        productDto.setUpdated(product.getUpdated());
+
         return productDto;
     }
 
 
-    public static Product DtoToProduct(ProductDto productDto) {
-        return new Product();
+    public static Product dtoToProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setDescription(productDto.getDescription());
+        product.setTitle(productDto.getTitle());
+        product.setPrice(productDto.getPrice());
+
+        return product;
     }
 }
