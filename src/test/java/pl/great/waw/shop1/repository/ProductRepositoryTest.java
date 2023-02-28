@@ -8,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import pl.great.waw.shop1.domain.Product;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ProductRepositoryTest {
@@ -19,9 +19,10 @@ class ProductRepositoryTest {
     private static final String DESCRIPTION = "The iPhone is a line of smartphones by Apple";
     private static final BigDecimal PRICE = BigDecimal.valueOf(999);
     private static final String PRODUCT_TITLE1 = "iPhone";
-    private static final String DESCRIPTION1 = "The iPhone is a line  Apple";
+    private static final String DESCRIPTION1 = "The iPhone is a line Apple";
     private static final BigDecimal PRICE1 = BigDecimal.valueOf(9);
-
+    private static final LocalDateTime time1 = LocalDateTime.now();
+    private static final LocalDateTime time2 = LocalDateTime.now();
     private Product product;
 
     @Autowired
@@ -29,7 +30,7 @@ class ProductRepositoryTest {
 
     @BeforeEach
     void setBefore() {
-        this.product = productRepository.create(new Product(PRODUCT_TITLE, DESCRIPTION, PRICE));
+        this.product = productRepository.create(new Product());
     }
 
     @AfterEach
@@ -39,30 +40,38 @@ class ProductRepositoryTest {
 
     @Test
     void create() {
+        //when
         Product savedProduct = this.productRepository.findById(product.getId());
-
-        assertEquals(product, savedProduct);
+        //then
+        assertNotNull(savedProduct);
+        assertEquals(savedProduct, product);
 
     }
 
     @Test
     void findById() {
+        //when
         Product byId = productRepository.findById(product.getId());
+        //then
         assertEquals(product, byId);
     }
 
     @Test
     void deleteById() {
+        //when
         productRepository.deleteById(product.getId());
+        //then
         assertNull(productRepository.findById(product.getId()));
     }
 
     @Test
     void update() {
-        Product product1 = new Product(PRODUCT_TITLE1, DESCRIPTION1, PRICE1);
+        //given
+        Product product1 = new Product();
+        product1.setId(product.getId());
+        //when
         Product updated = this.productRepository.update(product1);
-
-        assertEquals(updated, product1);
-
+        //then
+        assertEquals(product1, updated);
     }
 }
