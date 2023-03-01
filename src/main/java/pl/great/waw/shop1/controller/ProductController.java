@@ -10,18 +10,28 @@ public class ProductController {
 
     private final ProductServiceImpl productService;
 
-    public ProductController (ProductServiceImpl productService) {this.productService = productService;}
+    public ProductController(ProductServiceImpl productService) {
+        this.productService = productService;
+    }
 
     @GetMapping(value = "/id")
-    public ProductDto get(@PathVariable Long id){
+    public ProductDto get(@PathVariable Long id) {
         return productService.get(id);
     }
+
+    @PostMapping
+    public ProductDto create(@RequestBody ProductDto productDto) {
+        productService.create(productDto);
+        return productDto;
+    }
+
     @DeleteMapping(value = "{id}")
-    public boolean delete(@PathVariable Long id){
+    public boolean delete(@PathVariable Long id) {
         return productService.delete(id);
     }
-    @PutMapping
-    public ProductDto update(@PathVariable Long id, @RequestBody ProductDto productDto){
+
+    @PutMapping(value = "/{id}")
+    public ProductDto update(@PathVariable Long id, @RequestBody ProductDto productDto) {
         return productService.update(productDto);
     }
 }
