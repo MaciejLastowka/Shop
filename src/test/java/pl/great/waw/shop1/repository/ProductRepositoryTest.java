@@ -7,23 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.great.waw.shop1.domain.Product;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 class ProductRepositoryTest {
-//
-//    private static final String PRODUCT_TITLE = "iPhone 14";
-//    private static final String DESCRIPTION = "The iPhone is a line of smartphones by Apple";
-//    private static final BigDecimal PRICE = BigDecimal.valueOf(999.0);
-//    private static final String PRODUCT_TITLE1 = "iPhone";
-//    private static final String DESCRIPTION1 = "The iPhone is a line  Apple";
-//    private static final BigDecimal PRICE1 = BigDecimal.valueOf(9);
-//    private static final LocalDateTime TIME1 = LocalDateTime.now();
-//    private static final LocalDateTime TIME2 = LocalDateTime.now();
     private Product product;
 
     @Autowired

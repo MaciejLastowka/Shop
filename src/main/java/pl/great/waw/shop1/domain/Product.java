@@ -1,8 +1,6 @@
 package pl.great.waw.shop1.domain;
 
 
-import net.bytebuddy.asm.Advice;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -95,7 +93,7 @@ public class Product {
         return Objects.equals(id, product.id)
                 && Objects.equals(title, product.title)
                 && Objects.equals(description, product.description)
-                && Objects.equals(price, product.price) ;
+                && Objects.equals(price, product.price);
     }
 
     @Override
