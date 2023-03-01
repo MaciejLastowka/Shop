@@ -1,6 +1,8 @@
 package pl.great.waw.shop1.domain;
 
 
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,6 +29,14 @@ public class Product {
         this.price = price;
         this.created = LocalDateTime.now();
         this.updated = LocalDateTime.now();
+    }
+
+    public Product(String title, String description, BigDecimal price, LocalDateTime time1, LocalDateTime time2) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.created = time1;
+        this.updated = time2;
     }
 
     public Long getId() {
