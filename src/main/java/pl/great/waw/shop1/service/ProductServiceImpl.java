@@ -3,41 +3,41 @@ package pl.great.waw.shop1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.great.waw.shop1.Mapper.ProductToDtoMapper;
+import pl.great.waw.shop1.Mapper.ProductMapper;
 import pl.great.waw.shop1.domain.Product;
 import pl.great.waw.shop1.repository.ProductRepository;
 
-import static pl.great.waw.shop1.Mapper.ProductToDtoMapper.productToDto;
 
 @Service
 public class ProductServiceImpl {
 
-
+    private final ProductMapper productMapper;
     private final ProductRepository productRepository;
 
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
+        this.productMapper = productMapper;
     }
 
 
     public ProductDto get(Long id) {
         Product product = productRepository.findById(id);
-        return productToDto(product);
+        return productMapper.productToDto(product);
     }
 
 
     public ProductDto create(ProductDto productDto) {
-        Product product = productRepository.create(ProductToDtoMapper.dtoToProduct(productDto));
-        return productToDto(product);
+        Product product = productRepository.create(productMapper.dtoToProduct(productDto));
+        return productMapper.productToDto(product);
     }
 
 
     public ProductDto update(ProductDto productDto) {
-        Product product = ProductToDtoMapper.dtoToProduct(productDto);
-        productRepository.update(product);
-        return productToDto(product);
+        Product product = productMapper.dtoToProduct(productDto);
+        Product updatedProduct = productRepository.update(product);
+        return productMapper.productToDto(updatedProduct);
     }
 
 

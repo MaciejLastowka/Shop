@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.great.waw.shop1.Mapper.ProductToDtoMapper;
+import pl.great.waw.shop1.Mapper.ProductMapper;
 import pl.great.waw.shop1.domain.Product;
 import pl.great.waw.shop1.repository.ProductRepository;
 
@@ -36,6 +36,9 @@ class ProductServiceImplTest {
     @Mock
     ProductRepository productRepository;
 
+    @Mock
+    private ProductMapper productMapper;
+
     @InjectMocks
     ProductServiceImpl productService;
 
@@ -56,6 +59,7 @@ class ProductServiceImplTest {
     void create() {
         //given
         when(productRepository.create(any())).thenReturn(this.productFromRepo);
+        when(productMapper.productToDto(any())).thenReturn(this.productFromController);
         //when
         ProductDto productFromDto = productService.create(productFromController);
         //then
@@ -67,13 +71,16 @@ class ProductServiceImplTest {
     void update() {
         //given
         ProductDto productDto = new ProductDto(PRODUCT_TITLE1, DESCRIPTION1, PRICE1, null, null);
-        Product product = ProductToDtoMapper.dtoToProduct(productDto);
+        Product product = productMapper.dtoToProduct(productDto);
         when(productRepository.update(product)).thenReturn(product);
+        when(productMapper.productToDto(any())).thenReturn(productDto);
         //when
         ProductDto updatedProductDto = productService.update(productDto);
         //then
         assertThat(updatedProductDto.getPrice(), equalTo(PRICE1));
-        assertEquals(product.getTitle(), updatedProductDto.getTitle());
+        assertThat(updatedProductDto.getTitle(), equalTo(PRODUCT_TITLE1));
+        assertThat(updatedProductDto.getDescription(), equalTo(DESCRIPTION1));
+
     }
 
     @Test

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import pl.great.waw.shop1.domain.Product;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ComponentScan("pl@Mapper(componentModel = \"spring\")\n.great.waw.shop1.Mapper")
 class ProductRepositoryTest {
 
     private static final String PRODUCT_TITLE = "iPhone 14";
@@ -28,9 +30,10 @@ class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
+
     @BeforeEach
     void setBefore() {
-        this.product = productRepository.create(new Product());
+        this.product = productRepository.create(new Product(PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time2));
     }
 
     @AfterEach
@@ -67,7 +70,7 @@ class ProductRepositoryTest {
     @Test
     void update() {
         //given
-        Product product1 = new Product();
+        Product product1 = new Product(PRODUCT_TITLE1, DESCRIPTION1, PRICE1, null, null);
         product1.setId(product.getId());
         //when
         Product updated = this.productRepository.update(product1);

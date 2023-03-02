@@ -30,9 +30,7 @@ class ProductControllerTest {
     private static final String PRODUCT_TITLE = "iPhone 14";
     private static final String DESCRIPTION = "The iPhone is a line of smartphones by Apple";
     private static final BigDecimal PRICE = BigDecimal.valueOf(999);
-    private static final String PRODUCT_TITLE1 = "iPhone";
-    private static final String DESCRIPTION1 = "The iPhone is a line Apple";
-    private static final BigDecimal PRICE1 = BigDecimal.valueOf(9);
+
 
     private static final ObjectMapper mapper = new ObjectMapper();
     @MockBean
