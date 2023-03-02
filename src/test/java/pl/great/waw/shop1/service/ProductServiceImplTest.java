@@ -28,8 +28,6 @@ class ProductServiceImplTest {
     private static final String TITLE1 = "iPhone 14";
     private static final String DESCRIPTION1 = "The iPhone is a line of smartphones by Apple";
     private static final BigDecimal PRICE1 = BigDecimal.valueOf(999.0);
-    private static final LocalDateTime TIME1 = LocalDateTime.now();
-    private static final LocalDateTime TIME2 = LocalDateTime.now();
 
     @Mock
     ProductRepository productRepository;
