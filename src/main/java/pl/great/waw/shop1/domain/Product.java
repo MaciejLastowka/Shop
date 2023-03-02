@@ -3,7 +3,6 @@ package pl.great.waw.shop1.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -27,9 +26,10 @@ public class Product {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.created = LocalDateTime.now();
-        this.updated = LocalDateTime.now();
+        this.created = created;
+        this.updated = updated;
     }
+
 
     public Long getId() {
         return id;
@@ -87,7 +87,7 @@ public class Product {
         return Objects.equals(id, product.id)
                 && Objects.equals(title, product.title)
                 && Objects.equals(description, product.description)
-                && Objects.equals(price, product.price) ;
+                && Objects.equals(price, product.price);
     }
 
     @Override

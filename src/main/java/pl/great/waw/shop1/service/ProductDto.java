@@ -16,6 +16,11 @@ public class ProductDto {
     public ProductDto() {
 
     }
+    public ProductDto(String title, String description, BigDecimal price){
+        this.title = title;
+        this.description = description;
+        this.price = price;
+    }
 
     public ProductDto(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
 

@@ -33,7 +33,7 @@ class ProductRepositoryTest {
 
     @BeforeEach
     void setBefore() {
-        this.product = productRepository.create(new Product(PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time2));
+        this.product = productRepository.create(new Product());
     }
 
     @AfterEach
@@ -70,7 +70,7 @@ class ProductRepositoryTest {
     @Test
     void update() {
         //given
-        Product product1 = new Product(PRODUCT_TITLE1, DESCRIPTION1, PRICE1, null, null);
+        Product product1 = new Product(PRODUCT_TITLE1, DESCRIPTION1, PRICE1, time1, time2);
         product1.setId(product.getId());
         //when
         Product updated = this.productRepository.update(product1);
