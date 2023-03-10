@@ -10,6 +10,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.great.waw.shop1.Mapper.ProductMapper;
+import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
 import pl.great.waw.shop1.repository.ProductRepository;
 
@@ -52,7 +53,7 @@ class ProductServiceImplTest {
     @BeforeEach
     public void setUp() {
         this.productFromRepo = new Product(PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
-        this.productFromController = new ProductDto(PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
+        this.productFromController = new ProductDto(CategoryName.DOM, PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
     }
 
     @Test
@@ -70,11 +71,11 @@ class ProductServiceImplTest {
     @Test
     void update() {
         //given
-        ProductDto productDto = new ProductDto(PRODUCT_TITLE1, DESCRIPTION1, PRICE1, null, null);
+        ProductDto productDto = new ProductDto(CategoryName.DOM, PRODUCT_TITLE1, DESCRIPTION1, PRICE1, null, null);
         Product product = productMapper.dtoToProduct(productDto);
         when(productRepository.update(product)).thenReturn(product);
         when(productMapper.productToDto(any())).thenReturn(productDto);
-        //when
+        //whenó
         ProductDto updatedProductDto = productService.update(productDto);
         //then
         assertThat(updatedProductDto.getPrice(), equalTo(PRICE1));

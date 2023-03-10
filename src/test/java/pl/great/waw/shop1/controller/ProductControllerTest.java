@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.service.ProductDto;
 import pl.great.waw.shop1.service.ProductServiceImpl;
 
@@ -43,7 +44,7 @@ class ProductControllerTest {
 
     @BeforeEach
     void setUp(){
-         productDto = new ProductDto(PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
+         productDto = new ProductDto(CategoryName.DOM, PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
     }
 
     @Test

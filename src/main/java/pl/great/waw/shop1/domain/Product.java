@@ -18,6 +18,10 @@ public class Product {
     private LocalDateTime created;
     private LocalDateTime updated;
 
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
+    private Category category;
+
     public Product() {
     }
 
@@ -77,6 +81,14 @@ public class Product {
 
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

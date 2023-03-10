@@ -1,5 +1,7 @@
 package pl.great.waw.shop1.service;
 
+import pl.great.waw.shop1.domain.CategoryName;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -9,6 +11,7 @@ public class ProductDto {
     private String title;
     private String description;
     private BigDecimal price;
+    private CategoryName categoryName;
     private LocalDateTime created;
     private LocalDateTime updated;
 
@@ -16,17 +19,16 @@ public class ProductDto {
     public ProductDto() {
 
     }
-    public ProductDto(String title, String description, BigDecimal price){
+    public ProductDto(CategoryName categoryName,String title, String description, BigDecimal price){
+        this.categoryName = categoryName;
         this.title = title;
         this.description = description;
         this.price = price;
     }
 
-    public ProductDto(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
+    public ProductDto(CategoryName categoryName,String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
 
-        this.title = title;
-        this.description = description;
-        this.price = price;
+        this(categoryName,title,description,price);
         this.created = created;
         this.updated = updated;
     }
@@ -71,9 +73,13 @@ public class ProductDto {
         this.updated = updated;
     }
 
+    public CategoryName getCategoryName() {
+        return categoryName;
+    }
 
-
-
+    public void setCategoryName(CategoryName categoryName) {
+        this.categoryName = categoryName;
+    }
 
     @Override
     public String toString() {

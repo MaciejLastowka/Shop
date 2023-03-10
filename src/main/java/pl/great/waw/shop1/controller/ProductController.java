@@ -14,7 +14,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(value = "/id")
+    @GetMapping(value = "/{id}")
     public ProductDto get(@PathVariable Long id) {
         return productService.get(id);
     }
