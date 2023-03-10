@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ComponentScan("pl@Mapper(componentModel = \"spring\")\n.great.waw.shop1.Mapper")
 class ProductRepositoryTest {
 
     private static final String PRODUCT_TITLE = "iPhone 14";

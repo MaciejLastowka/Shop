@@ -92,7 +92,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, price, created, updated);
+        return Objects.hash(id, title, description, price);
     }
 
     @Override

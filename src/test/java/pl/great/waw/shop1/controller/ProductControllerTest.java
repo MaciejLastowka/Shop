@@ -39,12 +39,11 @@ class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    ProductDto productDto;
+    private ProductDto productDto;
 
     @BeforeEach
     void setUp(){
          productDto = new ProductDto(PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
-
     }
 
     @Test
