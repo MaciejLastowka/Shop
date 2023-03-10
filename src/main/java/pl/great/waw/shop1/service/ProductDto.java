@@ -1,42 +1,34 @@
-package pl.great.waw.shop1.domain;
+package pl.great.waw.shop1.service;
 
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
-@Table(name = "PRODUCT")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+public class ProductDto {
+
     private String title;
     private String description;
     private BigDecimal price;
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public Product() {
+
+    public ProductDto() {
+
+    }
+    public ProductDto(String title, String description, BigDecimal price){
+        this.title = title;
+        this.description = description;
+        this.price = price;
     }
 
+    public ProductDto(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
 
-    public Product(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.created = created;
         this.updated = updated;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -79,31 +71,31 @@ public class Product {
         this.updated = updated;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id)
-                && Objects.equals(title, product.title)
-                && Objects.equals(description, product.description)
-                && Objects.equals(price, product.price);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, description, price);
-    }
+
+
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+        return "ProductDto{" +
+                "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", created=" + created +
                 ", updated=" + updated +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductDto that = (ProductDto) o;
+        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(price, that.price) && Objects.equals(created, that.created) && Objects.equals(updated, that.updated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, price, created, updated);
     }
 }
