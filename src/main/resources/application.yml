@@ -1,4 +1,6 @@
 spring:
+  liquibase:
+    change-log: classpath:liquibase-changeLog.xml
   datasource:
     username: postgres
     url: jdbc:postgresql://localhost:5432/shop
@@ -13,8 +15,5 @@ spring:
       hibernate:
         format_sql: true
 
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
+
+
