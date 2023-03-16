@@ -5,3 +5,4 @@ create table category (
     id int primary key,
     name varchar(255)
 );
+
