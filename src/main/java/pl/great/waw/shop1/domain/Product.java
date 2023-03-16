@@ -118,4 +118,8 @@ public class Product {
                 ", updated=" + updated +
                 '}';
     }
+
+    public void setCategory(CategoryName categoryName) {
+
+    }
 }

@@ -1,0 +1,7 @@
+<changeSet id="ProductInEachCategory100" author="nvoxland">
+  <sql>
+    INSERT INTO category (id, name) VALUES (1, 'Category 1');
+    INSERT INTO category (id, name) VALUES (2, 'Category 2');
+    INSERT INTO category (id, name) VALUES (3, 'Category 3');
+  </sql>
+</changeSet>
