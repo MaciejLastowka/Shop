@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
+import pl.great.waw.shop1.domain.Category;
+import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,10 +31,12 @@ class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
-
     @BeforeEach
     void setBefore() {
-        this.product = productRepository.create(new Product());
+        Product product = new Product();
+        Category category = getCategory(1L);
+        product.setCategory(category);
+        this.product = productRepository.create(product);
     }
 
     @AfterEach
@@ -47,7 +51,6 @@ class ProductRepositoryTest {
         //then
         assertNotNull(savedProduct);
         assertEquals(savedProduct, product);
-
     }
 
     @Test
@@ -69,11 +72,24 @@ class ProductRepositoryTest {
     @Test
     void update() {
         //given
-        Product product1 = new Product(PRODUCT_TITLE1, DESCRIPTION1, PRICE1, time1, time2);
+        Product product1 = new Product(getCategory(1L), PRODUCT_TITLE1, DESCRIPTION1, PRICE1, time1, time2);
         product1.setId(product.getId());
         //when
         Product updated = this.productRepository.update(product1);
         //then
         assertEquals(product1, updated);
+    }
+
+
+    private Category getCategory(Long id) {
+        Category category = new Category();
+        category.setId(id);
+        return category;
+    }
+
+    @Test
+    void findByCategory() {
+        List<Product> byCategory = this.productRepository.findByCategory(CategoryName.MOTO.name());
+        assertFalse(byCategory.isEmpty());
     }
 }

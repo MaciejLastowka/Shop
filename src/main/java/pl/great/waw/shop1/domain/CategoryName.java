@@ -1,9 +1,9 @@
 package pl.great.waw.shop1.domain;
 
 public enum CategoryName {
-    DOM(1L),
-    MOTO(2L),
-    ELEKTRO(3L);
+    MOTO(1L),
+    ELEKTRO(2L),
+    DOM(3L);
 
     private Long id;
 

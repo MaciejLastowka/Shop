@@ -1,8 +1,11 @@
 package pl.great.waw.shop1.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.service.ProductDto;
 import pl.great.waw.shop1.service.ProductServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -17,6 +20,11 @@ public class ProductController {
     @GetMapping(value = "/{id}")
     public ProductDto get(@PathVariable Long id) {
         return productService.get(id);
+    }
+
+    @GetMapping(value = "byCategory/{categoryName}")
+    public List<ProductDto> get(@PathVariable CategoryName categoryName) {
+        return productService.getByCategory(categoryName);
     }
 
     @PostMapping
