@@ -11,4 +11,6 @@ public interface ProductService {
 
     boolean delete(Long id);
 
+    AccountDto create(String name);
+
 }

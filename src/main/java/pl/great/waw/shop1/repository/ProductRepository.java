@@ -2,6 +2,7 @@ package pl.great.waw.shop1.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pl.great.waw.shop1.domain.Account;
 import pl.great.waw.shop1.domain.Product;
 
 import javax.persistence.EntityManager;
@@ -21,6 +22,7 @@ public class ProductRepository {
         this.entityManager.persist(product);
         return product;
     }
+
 
     public Product findById(Long id) {
         return this.entityManager.find(Product.class, id);
@@ -42,4 +44,12 @@ public class ProductRepository {
     public Product update(Product product) {
         return entityManager.merge(product);
     }
+
+
+    @Transactional
+    public Account createAccount(Account account) {
+        this.entityManager.persist(account);
+        return account;
+    }
 }
+

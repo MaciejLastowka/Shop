@@ -11,7 +11,6 @@ import pl.great.waw.shop1.service.ProductDto;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-
     @Mapping(source = "category", target = "categoryName", qualifiedByName = "categoryToCategoryName")
     ProductDto productToDto(Product product);
 
@@ -27,7 +26,7 @@ public interface ProductMapper {
 
     @Named("categoryToCategoryName")
     static CategoryName categoryIdToCategoryName(Category category) {
-        return CategoryName.valueOf( category.getTitle() );
+        return CategoryName.valueOf(category.getTitle());
     }
 }
 

@@ -34,4 +34,9 @@ public class ProductController {
     public ProductDto update(@PathVariable Long id, @RequestBody ProductDto productDto) {
         return productService.update(productDto);
     }
+//    @PostMapping
+//    public Account create(@RequestBody Account accountDto) {
+//        List<Order> orders = accountDto.getOrders();
+//        return (Account) orders;
+//    }
 }
