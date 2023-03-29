@@ -2,6 +2,8 @@ package pl.great.waw.shop1.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ACCOUNT")
@@ -12,6 +14,9 @@ public class Account {
     private String name;
     private LocalDateTime created;
     private LocalDateTime updated;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orders> orders = new ArrayList<>();
 
     public Account() {
     }

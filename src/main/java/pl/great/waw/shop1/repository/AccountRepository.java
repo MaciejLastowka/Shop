@@ -20,4 +20,12 @@ public class AccountRepository {
         return (Account) singleResult;
 
     }
+
+    public Account findById(String accountId) {
+        Query query = this.entityManager.createQuery("from Account where id=:id");
+        query.setParameter("id", accountId);
+        Object singleResult = query.getSingleResult();
+        return (Account) singleResult;
+
+    }
 }
