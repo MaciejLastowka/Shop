@@ -18,6 +18,9 @@ public class Product {
     private LocalDateTime created;
     private LocalDateTime updated;
 
+    @OneToOne
+    private OrderLineItem orderLineItem;
+
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
