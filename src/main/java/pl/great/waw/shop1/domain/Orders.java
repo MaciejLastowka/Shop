@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 public class Orders {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -15,7 +16,7 @@ public class Orders {
     @ManyToOne()
     private Account account;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<OrderLineItem> orderLineItems = new ArrayList<>();
 
     public Orders(Account account, List<OrderLineItem> orderLineItems) {
@@ -42,4 +43,11 @@ public class Orders {
         this.account = account;
     }
 
+    public List<OrderLineItem> getOrderLineItems() {
+        return orderLineItems;
+    }
+
+    public void setOrderLineItems(List<OrderLineItem> orderLineItems) {
+        this.orderLineItems = orderLineItems;
+    }
 }

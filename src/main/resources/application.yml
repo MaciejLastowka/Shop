@@ -5,7 +5,7 @@ spring:
     username: postgres
     url: jdbc:postgresql://localhost:5432/shop
     platform: postgres
-    password: lol112233
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: none
@@ -14,9 +14,4 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
-
-
-
-
-
+    open-in-view: false

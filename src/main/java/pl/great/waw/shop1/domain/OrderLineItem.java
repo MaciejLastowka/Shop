@@ -9,11 +9,14 @@ public class OrderLineItem {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "Order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private Orders orders;
     @OneToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
     private Long amount;
+
+    public OrderLineItem(){}
 
     public OrderLineItem(Orders order, Product product, Long amount ) {
         this.orders = order;
@@ -38,5 +41,19 @@ public class OrderLineItem {
         return product;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
 }
