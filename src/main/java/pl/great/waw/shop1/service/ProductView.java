@@ -1,11 +1,7 @@
 package pl.great.waw.shop1.service;
 
-public class AccountDto {
-
+public class ProductView {
     private Long id;
-
-    public AccountDto() {
-    }
 
     public Long getId() {
         return id;
@@ -14,6 +10,4 @@ public class AccountDto {
     public void setId(Long id) {
         this.id = id;
     }
-
 }
-
