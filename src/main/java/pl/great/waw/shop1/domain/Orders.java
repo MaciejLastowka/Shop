@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 public class Orders {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
