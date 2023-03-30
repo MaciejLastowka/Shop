@@ -36,6 +36,12 @@ class ProductRepositoryTest {
         Product product = new Product();
         Category category = getCategory(1L);
         product.setCategory(category);
+        product.setTitle(PRODUCT_TITLE);
+        product.setDescription(DESCRIPTION);
+        product.setPrice(BigDecimal.TEN);
+        product.setUpdated(time1);
+        product.setCreated(time1);
+
         this.product = productRepository.create(product);
     }
 

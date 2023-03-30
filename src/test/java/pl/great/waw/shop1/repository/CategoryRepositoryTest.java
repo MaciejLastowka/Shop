@@ -15,6 +15,6 @@ class CategoryRepositoryTest {
     @Test
     void findByTitle() {
         Category category = categoryRepository.findByTitle(CategoryName.DOM.name());
-
+    category.getTitle();
     }
 }

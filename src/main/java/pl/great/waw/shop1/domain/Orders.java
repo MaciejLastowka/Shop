@@ -18,6 +18,13 @@ public class Orders {
     @OneToMany(mappedBy = "orders")
     private List<OrderLineItem> orderLineItems = new ArrayList<>();
 
+    public Orders(Account account, List<OrderLineItem> orderLineItems) {
+        this.account = account;
+        this.orderLineItems = orderLineItems;
+    }
+
+    public Orders() {
+    }
 
     public Long getId() {
         return id;
@@ -34,4 +41,5 @@ public class Orders {
     public void setAccount(Account account) {
         this.account = account;
     }
+
 }
