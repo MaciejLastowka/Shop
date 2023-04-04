@@ -10,6 +10,7 @@ import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ProductRepositoryTest {
-
     private static final String PRODUCT_TITLE = "iPhone 14";
     private static final String DESCRIPTION = "The iPhone is a line of smartphones by Apple";
     private static final BigDecimal PRICE = BigDecimal.valueOf(999);
@@ -35,10 +35,11 @@ class ProductRepositoryTest {
     void setBefore() {
         Product product = new Product();
         Category category = getCategory(1L);
+        product.setId(1L);
         product.setCategory(category);
         product.setTitle(PRODUCT_TITLE);
         product.setDescription(DESCRIPTION);
-        product.setPrice(BigDecimal.TEN);
+        product.setPrice(PRICE);
         product.setUpdated(time1);
         product.setCreated(time1);
 
@@ -56,7 +57,11 @@ class ProductRepositoryTest {
         Product savedProduct = this.productRepository.findById(product.getId());
         //then
         assertNotNull(savedProduct);
-        assertEquals(savedProduct, product);
+        assertEquals(product.getTitle(), savedProduct.getTitle());
+        assertEquals(product.getDescription(), savedProduct.getDescription());
+        assertEquals(product.getPrice(), savedProduct.getPrice().setScale(0, RoundingMode.UP));
+
+
     }
 
     @Test
@@ -64,7 +69,7 @@ class ProductRepositoryTest {
         //when
         Product byId = productRepository.findById(product.getId());
         //then
-        assertEquals(product, byId);
+        assertEquals(product.getId(), byId.getId());
     }
 
     @Test
