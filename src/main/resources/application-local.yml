@@ -2,10 +2,10 @@ spring:
   liquibase:
     change-log: classpath:liquibase-changeLog.xml
   datasource:
-    username: kycrwirgabfwzg
-    password: aeca8b3492143f5edde337838a03ee423a3bf19e16f194dcd2ee68eac5cfeab5
-    url: jdbc:postgresql://ec2-52-209-225-31.eu-west-1.compute.amazonaws.com:5432/dalb1r70frgfhk
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/shop
     platform: postgres
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: none
