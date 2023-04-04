@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.great.waw.shop1.domain.OrderLineItem;
 import pl.great.waw.shop1.domain.Orders;
-import pl.great.waw.shop1.domain.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,18 +17,6 @@ public class OrderRepository {
     @PersistenceContext
     private EntityManager entityManager;
     List<OrderLineItem> orderList = new ArrayList<OrderLineItem>();
-
-    @Transactional
-    public Orders newOrder() {
-        return new Orders();
-    }
-
-    @Transactional
-    public OrderLineItem addProductToOrderList(Orders order, Product product, Long amount) {
-        OrderLineItem productToSaveOnOrderLineItemList = new OrderLineItem(order, product, amount);
-        orderList.add(productToSaveOnOrderLineItemList);
-        return this.entityManager.merge(productToSaveOnOrderLineItemList);
-    }
 
     @Transactional
     public Orders createOrder(Orders order) {

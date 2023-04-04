@@ -1,48 +1,81 @@
 package pl.great.waw.shop1.repository;
 
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.great.waw.shop1.domain.Category;
-import pl.great.waw.shop1.domain.OrderLineItem;
-import pl.great.waw.shop1.domain.Orders;
-import pl.great.waw.shop1.domain.Product;
+import org.springframework.boot.test.context.SpringBootTest;
+import pl.great.waw.shop1.domain.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@SpringBootTest
 public class OrderRepositoryTest {
+    private static final Long ID = 1L;
     private static final String PRODUCT_TITLE = "iPhone 14";
     private static final String DESCRIPTION = "The iPhone is a line of smartphones by Apple";
     private static final BigDecimal PRICE = BigDecimal.valueOf(999);
     private static final LocalDateTime time1 = LocalDateTime.now();
-
+    private static final String NAME = "TEST";
 
     @Autowired
-    private OrderRepository orderRepository ;
+    private OrderRepository orderRepository;
+    @Autowired
+    private AccountRepository accountRepository;
+    private final List<OrderLineItem> orderList = new ArrayList<OrderLineItem>();
+
+    @BeforeEach
+    void setBefore() {
+        //category
+        Category category = new Category();
+        category.setTitle("DOM");
+        category.setId(ID);
+
+        //Product
+        Product product = new Product(category, PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time1);
+        product.setId(1L);
+        product.setCategory(category);
+        product.setTitle(PRODUCT_TITLE);
+        product.setDescription(DESCRIPTION);
+        product.setPrice(PRICE);
+        product.setUpdated(time1);
+        product.setCreated(time1);
+        Account account = new Account(NAME, null, null);
+
+    }
 
 
     @Test
-    public void addProductToOrderList() {
-        Category category2 = new Category();
-        category2.setTitle("DOM");
+    void createOrder() {
+        //given
+
         Orders order = new Orders();
-        Product temp = new Product(category2,PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time1);
-        OrderLineItem test = this.orderRepository.addProductToOrderList(order, temp, 1L);
-        assertEquals(temp.getId(), test.getProduct().getId());
+        order.setAccount(accountRepository.findByName(NAME));
+        //when
+        Orders savedOrder = orderRepository.createOrder(order);
+        //then
+        assertEquals(savedOrder.getId(), order.getId());
+        assertNotNull(savedOrder.getId());
+
     }
 
     @Test
-    public void createOrder() {
-    }
+    void findOrderById() {
+        //given
+        Orders order = new Orders();
+        order.setAccount(accountRepository.findByName(NAME));
+        Orders savedOrder = orderRepository.createOrder(order);
 
-    @Test
-    public void findOrderById() {
-    }
+        //when
+        Orders findOrder = orderRepository.findOrderById(savedOrder.getId());
 
-    @Test
-    public void findOrdersByAccountId() {
+        //then
+        assertEquals(savedOrder.getId(), findOrder.getId());
     }
 }
+
