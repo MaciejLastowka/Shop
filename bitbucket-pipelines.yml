@@ -1,0 +1,35 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+image: maven:3.3.9
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: 'Build and Test'
+            script:
+              - mvn clean install
+              - echo "Your build and test goes here..."
+        - step:
+            name: 'Security scan'
+            script:
+              - echo "Your security scan goes here..."
+    - step:
+        name: Create artifact
+        script:
+          - tar czfv application.tgz pom.xml src/
+        artifacts:
+          - application.tgz
+
+    - step:
+        name: Deploy to production
+        deployment: production
+        script:
+          - pipe: atlassian/heroku-deploy:1.1.0
+            variables:
+              HEROKU_API_KEY: $HEROKU_API_KEY
+              HEROKU_APP_NAME: $HEROKU_APP_NAME
+              ZIP_FILE: "application.tgz"

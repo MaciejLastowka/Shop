@@ -3,6 +3,8 @@
 --changeset nvoxland:1
 create table category (
     id int primary key,
-    name varchar(255)
+    title varchar(255),
+    created timestamp,
+    updated timestamp
 );
 

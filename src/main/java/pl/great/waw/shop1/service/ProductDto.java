@@ -12,9 +12,6 @@ public class ProductDto {
     private String description;
     private BigDecimal price;
     private CategoryName categoryName;
-    private LocalDateTime created;
-    private LocalDateTime updated;
-
 
     public ProductDto() {
 
@@ -29,8 +26,6 @@ public class ProductDto {
     public ProductDto(CategoryName categoryName,String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
 
         this(categoryName,title,description,price);
-        this.created = created;
-        this.updated = updated;
     }
 
     public String getTitle() {
@@ -57,22 +52,6 @@ public class ProductDto {
         this.price = price;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
-
     public CategoryName getCategoryName() {
         return categoryName;
     }
@@ -87,8 +66,6 @@ public class ProductDto {
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", created=" + created +
-                ", updated=" + updated +
                 '}';
     }
 
@@ -97,11 +74,11 @@ public class ProductDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDto that = (ProductDto) o;
-        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(price, that.price) && Objects.equals(created, that.created) && Objects.equals(updated, that.updated);
+        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(price, that.price) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description, price, created, updated);
+        return Objects.hash(title, description, price);
     }
 }

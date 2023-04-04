@@ -26,7 +26,8 @@ public class Product {
     }
 
 
-    public Product(String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
+    public Product(Category category, String title, String description, BigDecimal price, LocalDateTime created, LocalDateTime updated) {
+        this.category = category;
         this.title = title;
         this.description = description;
         this.price = price;

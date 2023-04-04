@@ -10,6 +10,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.great.waw.shop1.Mapper.ProductMapper;
+import pl.great.waw.shop1.domain.Category;
 import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
 import pl.great.waw.shop1.repository.ProductRepository;
@@ -52,7 +53,7 @@ class ProductServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        this.productFromRepo = new Product(PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
+        this.productFromRepo = new Product(new Category(), PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
         this.productFromController = new ProductDto(CategoryName.DOM, PRODUCT_TITLE, DESCRIPTION, PRICE, null, null);
     }
 

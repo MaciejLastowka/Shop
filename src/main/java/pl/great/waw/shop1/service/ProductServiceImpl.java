@@ -4,8 +4,12 @@ package pl.great.waw.shop1.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.great.waw.shop1.Mapper.ProductMapper;
+import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
 import pl.great.waw.shop1.repository.ProductRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -14,13 +18,17 @@ public class ProductServiceImpl {
     private final ProductMapper productMapper;
     private final ProductRepository productRepository;
 
-
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
     }
 
+    public List<ProductDto> getByCategory(CategoryName categoryName){
+       return this.productRepository.findByCategory(categoryName.name()).stream()
+                .map(productMapper::productToDto)
+                .collect(Collectors.toList());
+    }
 
     public ProductDto get(Long id) {
         Product product = productRepository.findById(id);

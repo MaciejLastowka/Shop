@@ -2,39 +2,38 @@ package pl.great.waw.shop1.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "CATEGORY")
-public class Category {
-
+@Table(name = "ACCOUNT")
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String title;
-
+    private String name;
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    @OneToMany(mappedBy="category")
-    private List<Product> products;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orders> orders = new ArrayList<>();
 
-
-
-    public Long getId() {
-        return id;
+    public Account() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Account(String name, LocalDateTime created, LocalDateTime updated) {
+        this.name = name;
+        this.created = created;
+        this.updated = updated;
     }
 
-    public String getTitle() {
-        return title;
+
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getCreated() {
@@ -53,11 +52,11 @@ public class Category {
         this.updated = updated;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Long getId() {
+        return id;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setId(Long id) {
+        this.id = id;
     }
 }
