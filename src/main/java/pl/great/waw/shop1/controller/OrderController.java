@@ -19,7 +19,11 @@ public class OrderController {
     }
 
     @GetMapping(path = "/{id}")
-    public OrderDto get(@PathVariable Long id) {
+    public OrderDto get(@PathVariable Long id)
+    {
+        orderService.setOrderTotalPrice(id);
         return orderService.findById(id);
     }
+
+
 }

@@ -2,6 +2,7 @@ package pl.great.waw.shop1.controller.dto;
 
 import pl.great.waw.shop1.service.AccountDto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class OrderDto {
     public OrderDto(List<OrderLineItemDto> orderLineItems) {
         this.orderLineItems = orderLineItems;
     }
+    private BigDecimal totalPrice;
 
     public OrderDto() {
     }
@@ -32,5 +34,13 @@ public class OrderDto {
 
     public void setOrderLineItems(List<OrderLineItemDto> orderLineItems) {
         this.orderLineItems = orderLineItems;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
