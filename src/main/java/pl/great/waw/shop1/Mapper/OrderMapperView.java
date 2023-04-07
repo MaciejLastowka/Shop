@@ -14,20 +14,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
-public abstract class OrderMapper {
-
+public abstract class OrderMapperView {
     @Autowired
     private OrderLineItemMapper orderLineItemMapper;
 
-    public abstract OrderDto map(Orders orders);
+    public abstract OrderDtoView map(Orders orders);
 
     @Mapping(source = "orderLineItems", target = "orderLineItems", qualifiedByName = "mapOrderLineItemDtoToOrderLineItem")
     public abstract Orders map(OrderDto orders);
 
     @Mapping(source = "orderLineItems", target = "orderLineItems", qualifiedByName = "mapOrderLineItemDtoToOrderLineItem")
     public abstract Orders map(OrderDtoView orders);
-
-
 
     @Named("mapOrderLineItemDtoToOrderLineItem")
     List<OrderLineItem> mapOrderLineItemDtoToOrderLineItem(List<OrderLineItemDto> orderLineItems) {

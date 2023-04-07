@@ -1,7 +1,10 @@
 package pl.great.waw.shop1.repository;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import pl.great.waw.shop1.domain.Category;
 import pl.great.waw.shop1.domain.OrderLineItem;
 import pl.great.waw.shop1.domain.Orders;
@@ -10,9 +13,10 @@ import pl.great.waw.shop1.domain.Product;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class OrderRepositoryTest {
     private static final String PRODUCT_TITLE = "iPhone 14";
     private static final String DESCRIPTION = "The iPhone is a line of smartphones by Apple";
@@ -21,7 +25,11 @@ public class OrderRepositoryTest {
 
 
     @Autowired
-    private OrderRepository orderRepository ;
+    private OrderRepository orderRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
 
     @Test
@@ -29,7 +37,7 @@ public class OrderRepositoryTest {
         Category category2 = new Category();
         category2.setTitle("DOM");
         Orders order = new Orders();
-        Product temp = new Product(category2,PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time1);
+        Product temp = new Product(category2, PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time1);
         OrderLineItem test = this.orderRepository.addProductToOrderList(order, temp, 1L);
         assertEquals(temp.getId(), test.getProduct().getId());
     }
@@ -45,4 +53,5 @@ public class OrderRepositoryTest {
     @Test
     public void findOrdersByAccountId() {
     }
+
 }

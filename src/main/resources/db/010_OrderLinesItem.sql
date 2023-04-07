@@ -6,4 +6,3 @@
        add constraint FKb5028ommnx85ptyl5rvfhdcc4
        foreign key (order_id)
        references orders
-

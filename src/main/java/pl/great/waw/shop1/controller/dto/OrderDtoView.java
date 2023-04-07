@@ -6,17 +6,18 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDto {
+public class OrderDtoView {
 
     private AccountDto account;
 
     private List<OrderLineItemDto> orderLineItems = new ArrayList<>();
 
-    public OrderDto(List<OrderLineItemDto> orderLineItems) {
+    public OrderDtoView(List<OrderLineItemDto> orderLineItems) {
         this.orderLineItems = orderLineItems;
     }
+    private BigDecimal totalPrice;
 
-    public OrderDto() {
+    public OrderDtoView() {
     }
 
     public AccountDto getAccount() {
@@ -35,5 +36,11 @@ public class OrderDto {
         this.orderLineItems = orderLineItems;
     }
 
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
 
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
