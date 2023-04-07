@@ -20,14 +20,15 @@ import java.util.Locale;
 @Component
 public class ProductInEachCategory100  {
 
-  //  @PersistenceContext
+    @PersistenceContext
+    @Autowired
     private EntityManager entityManager;
 
     private final Faker faker = new Faker(new Locale("pl-PL"));
 
     private final int numberOfProducts = 100;
 
-   // @PostConstruct
+
     @Transactional
     public void initData(String... args) {
         for (int i = 0; i < numberOfProducts; i++) {

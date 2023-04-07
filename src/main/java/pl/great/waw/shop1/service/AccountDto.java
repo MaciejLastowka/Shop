@@ -3,6 +3,7 @@ package pl.great.waw.shop1.service;
 public class AccountDto {
 
     private Long id;
+    private String name;
 
     public AccountDto() {
     }
@@ -15,5 +16,12 @@ public class AccountDto {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 

@@ -1,6 +1,7 @@
 package pl.great.waw.shop1.domain;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +14,13 @@ public class Orders {
     private Long id;
 
     @JoinColumn(name = "account_id", nullable = false)
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private Account account;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<OrderLineItem> orderLineItems = new ArrayList<>();
+
+    private BigDecimal totalPrice;
 
     public Orders(Account account, List<OrderLineItem> orderLineItems) {
         this.account = account;
@@ -49,5 +52,13 @@ public class Orders {
 
     public void setOrderLineItems(List<OrderLineItem> orderLineItems) {
         this.orderLineItems = orderLineItems;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
