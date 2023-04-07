@@ -2,14 +2,11 @@ package pl.great.waw.shop1.hooks;
 
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import pl.great.waw.shop1.domain.Category;
 import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
@@ -47,7 +44,7 @@ public class ProductInEachCategory100  {
             product2.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
             product2.setCreated(LocalDateTime.now());
             product2.setUpdated(LocalDateTime.now());
-            product2.setCategory(CategoryName.MOTO);
+            product2.setCategory(CategoryName.MOTORYZACJA);
             entityManager.persist(product2);
 
             Product product3 = new Product();

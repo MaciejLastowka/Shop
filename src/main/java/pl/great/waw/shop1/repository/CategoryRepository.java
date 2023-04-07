@@ -6,6 +6,7 @@ import pl.great.waw.shop1.domain.Category;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class CategoryRepository {
@@ -18,7 +19,11 @@ public class CategoryRepository {
         query.setParameter("title", title);
         Object singleResult = query.getSingleResult();
         return (Category) singleResult;
+    }
 
+    public List<Category> findAll(){
+        Query query = this.entityManager.createQuery("from Category");
+        return query.getResultList();
     }
 
 }

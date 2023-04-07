@@ -1,9 +1,7 @@
 package pl.great.waw.shop1.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.great.waw.shop1.domain.CategoryName;
-import pl.great.waw.shop1.hooks.ProductInEachCategory100;
 import pl.great.waw.shop1.service.ProductDto;
 import pl.great.waw.shop1.service.ProductServiceImpl;
 
@@ -19,9 +17,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(value = "/{id}")
-    public ProductDto get(@PathVariable Long id) {
-        return productService.get(id);
+
+    @GetMapping(value = "/{title}")
+    public ProductDto get(@PathVariable String title) {
+        return productService.getByTitle(title);
     }
 
     @GetMapping(value = "byCategory/{categoryName}")
@@ -46,7 +45,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/add100")
-    public boolean add100products(){
+    public boolean add100products() {
         productService.add100products();
         return true;
     }

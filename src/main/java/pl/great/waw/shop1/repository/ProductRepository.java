@@ -32,6 +32,12 @@ public class ProductRepository {
         return this.entityManager.find(Product.class, id);
     }
 
+    public Product findByTitle(String title) {
+        Query query = this.entityManager.createQuery("from Product where title=:title ");
+        query.setParameter("title", title);
+        return (Product) query.getSingleResult();
+    }
+
     @Transactional
     public List<Product> findByCategory(String title) {
         Category category = this.categoryRepository.findByTitle(title);

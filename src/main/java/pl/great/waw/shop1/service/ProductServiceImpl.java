@@ -36,6 +36,11 @@ public class ProductServiceImpl {
         return productMapper.productToDto(product);
     }
 
+    public ProductDto getByTitle(String title) {
+        Product product = productRepository.findByTitle(title);
+        return productMapper.productToDto(product);
+    }
+
 
     public ProductDto create(ProductDto productDto) {
         Product product = productRepository.create(productMapper.dtoToProduct(productDto));
