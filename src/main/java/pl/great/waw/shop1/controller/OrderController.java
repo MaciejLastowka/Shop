@@ -3,6 +3,7 @@ package pl.great.waw.shop1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.great.waw.shop1.controller.dto.OrderDto;
+import pl.great.waw.shop1.controller.dto.OrderDtoView;
 import pl.great.waw.shop1.domain.Orders;
 import pl.great.waw.shop1.service.OrderService;
 
@@ -19,9 +20,8 @@ public class OrderController {
     }
 
     @GetMapping(path = "/{id}")
-    public OrderDto get(@PathVariable Long id)
+    public OrderDtoView get(@PathVariable Long id)
     {
-        orderService.setOrderTotalPrice(id);
         return orderService.findById(id);
     }
 

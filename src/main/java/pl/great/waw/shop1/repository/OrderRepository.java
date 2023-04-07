@@ -62,7 +62,9 @@ public class OrderRepository {
         if (orderId == null) {
             return null;
         }
-        Query query = this.entityManager.createQuery("SELECT o FROM Orders o LEFT JOIN FETCH o.orderLineItems where o.id=:orderId");
+        Query query = this.entityManager.createQuery("SELECT o FROM Orders o " +
+                "LEFT JOIN FETCH o.orderLineItems " +
+                "where o.id=:orderId");
         query.setParameter("orderId", orderId);
         Object singleResult = query.getSingleResult();
         return (Orders) singleResult;

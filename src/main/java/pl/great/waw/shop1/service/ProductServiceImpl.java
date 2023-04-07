@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.great.waw.shop1.Mapper.ProductMapper;
 import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
+import pl.great.waw.shop1.hooks.ProductInEachCategory100;
 import pl.great.waw.shop1.repository.ProductRepository;
 
 import java.util.List;
@@ -51,6 +52,12 @@ public class ProductServiceImpl {
 
     public boolean delete(Long id) {
         return productRepository.deleteById(id);
+    }
+
+    public boolean add100products(){
+        ProductInEachCategory100 productInEachCategory100 = new ProductInEachCategory100();
+        productInEachCategory100.initData();
+        return true;
     }
 
 }
