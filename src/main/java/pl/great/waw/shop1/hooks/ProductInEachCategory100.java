@@ -1,60 +1,88 @@
 package pl.great.waw.shop1.hooks;
 
 import com.github.javafaker.Faker;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import pl.great.waw.shop1.domain.Category;
 import pl.great.waw.shop1.domain.CategoryName;
 import pl.great.waw.shop1.domain.Product;
+import pl.great.waw.shop1.repository.CategoryRepository;
+import pl.great.waw.shop1.repository.ProductRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Locale;
-
+import java.util.stream.IntStream;
 
 @Component
-public class ProductInEachCategory100  {
+public class ProductInEachCategory100 {
 
-    @PersistenceContext
-    @Autowired
-    private EntityManager entityManager;
-
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final Faker faker = new Faker(new Locale("pl-PL"));
 
-    private final int numberOfProducts = 100;
-
+    public ProductInEachCategory100(ProductRepository productRepository, CategoryRepository categoryRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     @Transactional
-    public void initData(String... args) {
-        for (int i = 0; i < numberOfProducts; i++) {
-            Product product1 = new Product();
-            product1.setTitle(faker.commerce().productName());
-            product1.setDescription(faker.lorem().paragraph());
-            product1.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
-            product1.setCreated(LocalDateTime.now());
-            product1.setUpdated(LocalDateTime.now());
-            product1.setCategory(CategoryName.DOM);
-            entityManager.persist(product1);
+    public void initData() {
 
-            Product product2 = new Product();
-            product2.setTitle(faker.commerce().productName());
-            product2.setDescription(faker.lorem().paragraph());
-            product2.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
-            product2.setCreated(LocalDateTime.now());
-            product2.setUpdated(LocalDateTime.now());
-            product2.setCategory(CategoryName.MOTORYZACJA);
-            entityManager.persist(product2);
+        int numberOfProducts = 10;
+        IntStream.range(0, numberOfProducts).forEach(i -> {
+            Product product = new Product();
+            String title = faker.commerce().productName();
+            if (title.length() > 254) {
+                title = title.substring(0, 255);
+            }
+            product.setTitle(title);
+            String description = faker.lorem().paragraph();
+            if (description.length() > 255) {
+                description = description.substring(0, 255);
+            }
+            product.setDescription(description);
+            product.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
+            Category byTitle = categoryRepository.findByTitle(String.valueOf(CategoryName.DOM));
+            product.setCategory(byTitle);
+            productRepository.create(product);
+        });
 
-            Product product3 = new Product();
-            product3.setTitle(faker.commerce().productName());
-            product3.setDescription(faker.lorem().paragraph());
-            product3.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
-            product3.setCreated(LocalDateTime.now());
-            product3.setUpdated(LocalDateTime.now());
-            product3.setCategory(CategoryName.ELEKTRO);
-            entityManager.persist(product3);
-        }
+
+        IntStream.range(0, numberOfProducts).forEach(i -> {
+            Product product = new Product();
+            String title = faker.commerce().productName();
+            if (title.length() > 255) {
+                title = title.substring(0, 255);
+            }
+            product.setTitle(title);
+            String description = faker.lorem().paragraph();
+            if (description.length() > 255) {
+                description = description.substring(0, 255);
+            }
+            product.setDescription(description);
+            product.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
+            Category byTitle = categoryRepository.findByTitle(String.valueOf(CategoryName.MOTO));
+            product.setCategory(byTitle);
+            productRepository.create(product);
+        });
+
+
+        IntStream.range(0, numberOfProducts).forEach(i -> {
+            Product product = new Product();
+            String title = faker.commerce().productName();
+            if (title.length() > 255) {
+                title = title.substring(0, 255);
+            }
+            product.setTitle(title);
+            String description = faker.lorem().paragraph();
+            if (description.length() > 255) {
+                description = description.substring(0, 255);
+            }
+            product.setDescription(description);
+            product.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
+            Category byTitle = categoryRepository.findByTitle(String.valueOf(CategoryName.ELEKTRO));
+            product.setCategory(byTitle);
+            productRepository.create(product);
+        });
     }
 }
