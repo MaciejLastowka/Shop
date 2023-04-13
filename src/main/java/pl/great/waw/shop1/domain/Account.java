@@ -18,6 +18,9 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orders> orders = new ArrayList<>();
 
+    @OneToOne
+    private Cart cart;
+
     public Account() {
     }
 
