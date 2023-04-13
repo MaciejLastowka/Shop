@@ -18,11 +18,13 @@ public class ProductServiceImpl {
 
     private final ProductMapper productMapper;
     private final ProductRepository productRepository;
+    private final ProductInEachCategory100 productInEachCategory100;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, ProductInEachCategory100 productInEachCategory100) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.productInEachCategory100 = productInEachCategory100;
     }
 
     public List<ProductDto> getByCategory(CategoryName categoryName){
@@ -60,7 +62,6 @@ public class ProductServiceImpl {
     }
 
     public boolean add100products(){
-        ProductInEachCategory100 productInEachCategory100 = new ProductInEachCategory100();
         productInEachCategory100.initData();
         return true;
     }

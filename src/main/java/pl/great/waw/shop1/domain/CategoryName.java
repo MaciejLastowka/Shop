@@ -1,7 +1,7 @@
 package pl.great.waw.shop1.domain;
 
 public enum CategoryName {
-    MOTORYZACJA(1L),
+    MOTO(1L),
     ELEKTRO(2L),
     DOM(3L);
 
