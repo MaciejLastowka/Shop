@@ -61,7 +61,7 @@ public class ProductInEachCategory100 {
             }
             product.setDescription(description);
             product.setPrice(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 1000)));
-            Category byTitle = categoryRepository.findByTitle(String.valueOf(CategoryName.MOTO));
+            Category byTitle = categoryRepository.findByTitle(String.valueOf(CategoryName.MOTORYZACJA));
             product.setCategory(byTitle);
             productRepository.create(product);
         });

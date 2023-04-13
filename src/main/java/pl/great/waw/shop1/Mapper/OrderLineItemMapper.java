@@ -7,8 +7,6 @@ import pl.great.waw.shop1.domain.OrderLineItem;
 
 @Mapper(componentModel = "spring")
 public abstract class OrderLineItemMapper {
-//    @Mapping(target = "id", source = "id")
-//    @Mapping(target = "amount", source = "amount")
-//    @Mapping(target = "product", source = "product")
+
     public abstract OrderLineItem map(OrderLineItemDto dto);
 }

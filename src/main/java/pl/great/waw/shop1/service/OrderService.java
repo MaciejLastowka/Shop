@@ -41,47 +41,14 @@ public class OrderService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public OrderDto create(OrderDto orderDto) {
-        Orders orders = orderMapper.map(orderDto);
-        orders.setOrderLineItems(Arrays.asList());
-        Orders orderFromDb = repository.createOrder(orders);
-
-        Orders order = repository.findOrderById(orderFromDb.getId());
-
-        List<OrderLineItem> orderLineItems = orderDto.getOrderLineItems().stream()
-                .map(orderLineItem -> {
-                    OrderLineItem lineItem = orderLineItemMapper.map(orderLineItem);
-                    lineItem.setOrders(order);
-                    return lineItem;
-                })
-                .collect(Collectors.toList());
-
-        order.setOrderLineItems(orderLineItems);
-        List<OrderLineItem> orderLineItemList = order.getOrderLineItems();
-        BigDecimal totalPrice = BigDecimal.ZERO;
-        for (OrderLineItem orderLineItem : orderLineItemList) {
-            Long productId = orderLineItem.getProduct().getId();
-            Product product = productRepository.findById(productId);
-            BigDecimal lineItemTotalPrice = product.getPrice().multiply(BigDecimal.valueOf(orderLineItem.getAmount()));
-            totalPrice = totalPrice.add(lineItemTotalPrice);
-        }
-//        BigDecimal totalPrice = orderLineItemList.stream()
-//                .map(OrderLineItem -> (OrderLineItem.getProduct().getPrice())
-//                        .multiply(BigDecimal.valueOf(OrderLineItem.getAmount())))
-//                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        order.setTotalPrice(totalPrice);
-
-        repository.createOrder(order);
-
-        return orderMapper.map(repository.findOrderById(orderFromDb.getId()));
+    //FIXME ADD RESL Implementation - Create ORDER BASED on LOGGED USER
+    public OrderDto create() {
+        return new OrderDto(1L);
     }
 
     public OrderDtoView findById(Long id) {
         return orderMapperView.map(repository.findOrderById(id));
     }
-
-
-
 
     public void setOrderTotalPrice(Long orderId) {
         Orders order = repository.findOrderById(orderId);

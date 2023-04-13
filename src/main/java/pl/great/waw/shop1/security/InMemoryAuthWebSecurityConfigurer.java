@@ -21,26 +21,21 @@ public class InMemoryAuthWebSecurityConfigurer {
                 .password(encoder.encode("admin"))
                 .roles("USER")
                 .build();
-        UserDetails user1 = User.withUsername("Mikolaj")
-                .password(encoder.encode("mikolaj"))
+        UserDetails user1 = User.withUsername("Pawel")
+                .password(encoder.encode("Pawel"))
                 .roles("USER")
                 .build();
 
-        UserDetails user2 = User.withUsername("maciek")
-                .password(encoder.encode("maciek"))
+        UserDetails user2 = User.withUsername("Maciek")
+                .password(encoder.encode("Maciek"))
                 .roles("USER")
                 .build();
 
-        UserDetails user3 = User.withUsername("boro")
-                .password(encoder.encode("boro"))
+        UserDetails user4 = User.withUsername("Bartek")
+                .password(encoder.encode("Bartek"))
                 .roles("USER")
                 .build();
-
-        UserDetails user4 = User.withUsername("bartek")
-                .password(encoder.encode("bartek"))
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user, user1, user2, user3, user4);
+        return new InMemoryUserDetailsManager(user, user1, user2, user4);
     }
 
     @Bean

@@ -6,6 +6,7 @@ import pl.great.waw.shop1.domain.Account;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class AccountRepository {
@@ -26,6 +27,10 @@ public class AccountRepository {
         query.setParameter("id", accountId);
         Object singleResult = query.getSingleResult();
         return (Account) singleResult;
+    }
 
+    public List<Account> findAll() {
+        Query query = this.entityManager.createQuery("from Account ");
+        return query.getResultList();
     }
 }

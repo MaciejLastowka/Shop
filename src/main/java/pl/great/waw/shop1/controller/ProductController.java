@@ -1,10 +1,14 @@
 package pl.great.waw.shop1.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pl.great.waw.shop1.controller.dto.CartDto;
+import pl.great.waw.shop1.controller.dto.CartLineView;
 import pl.great.waw.shop1.domain.CategoryName;
+import pl.great.waw.shop1.service.CartService;
 import pl.great.waw.shop1.service.ProductDto;
 import pl.great.waw.shop1.service.ProductServiceImpl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -13,8 +17,11 @@ public class ProductController {
 
     private final ProductServiceImpl productService;
 
-    public ProductController(ProductServiceImpl productService) {
+    private final CartService cartService;
+
+    public ProductController(ProductServiceImpl productService, CartService cartService) {
         this.productService = productService;
+        this.cartService = cartService;
     }
 
 
@@ -43,6 +50,12 @@ public class ProductController {
     public ProductDto update(@PathVariable Long id, @RequestBody ProductDto productDto) {
         return productService.update(productDto);
     }
+
+    @PostMapping("/{productTitle}/{amount}/addToCart")
+    public CartDto addToCart(@PathVariable String productTitle, @PathVariable int amount) {
+        return cartService.add(new CartLineView(0, productTitle, amount, BigDecimal.ZERO));
+    }
+
 
     @PostMapping(value = "/add100")
     public boolean add100products() {

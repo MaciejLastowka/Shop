@@ -4,6 +4,8 @@ package pl.great.waw.shop1.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +23,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartLineItem> cartLineItems;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartLineItem> cartLineItemList = new ArrayList<>();
 
     public Product() {
     }

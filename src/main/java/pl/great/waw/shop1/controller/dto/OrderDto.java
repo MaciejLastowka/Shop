@@ -2,18 +2,22 @@ package pl.great.waw.shop1.controller.dto;
 
 import pl.great.waw.shop1.service.AccountDto;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDto {
 
+    private Long id;
     private AccountDto account;
 
     private List<OrderLineItemDto> orderLineItems = new ArrayList<>();
 
     public OrderDto(List<OrderLineItemDto> orderLineItems) {
         this.orderLineItems = orderLineItems;
+    }
+
+    public OrderDto(Long id) {
+        this.id = id;
     }
 
     public OrderDto() {
@@ -36,4 +40,11 @@ public class OrderDto {
     }
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
