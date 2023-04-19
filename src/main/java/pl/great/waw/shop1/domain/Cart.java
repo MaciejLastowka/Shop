@@ -19,7 +19,7 @@ public class Cart {
     @OneToOne(fetch = FetchType.LAZY)
     private Account account;
 
-    private BigDecimal totalAmount = BigDecimal.ZERO;
+    private BigDecimal totalAmount = BigDecimal.ZERO; //totalPrice?
 
     public Cart(List<CartLineItem> cartLineItemList, Account account, BigDecimal totalAmount) {
         this.cartLineItemList = cartLineItemList;

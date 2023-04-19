@@ -2,6 +2,7 @@ package pl.great.waw.shop1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.great.waw.shop1.controller.dto.CartDto;
 import pl.great.waw.shop1.controller.dto.OrderDto;
 import pl.great.waw.shop1.controller.dto.OrderDtoView;
 import pl.great.waw.shop1.domain.Orders;
@@ -15,8 +16,8 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public OrderDto create() {
-        return orderService.create();
+    public OrderDto create(@RequestBody CartDto cartDto) {
+        return orderService.create(cartDto);
     }
 
     @GetMapping(path = "/{id}")
