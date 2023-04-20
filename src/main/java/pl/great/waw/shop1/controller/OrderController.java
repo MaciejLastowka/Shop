@@ -17,7 +17,7 @@ public class OrderController {
 
     @PostMapping
     public OrderDto create(@RequestBody CartDto cartDto) {
-        return orderService.create(cartDto);
+        return orderService.create();
     }
 
     @GetMapping(path = "/{id}")
