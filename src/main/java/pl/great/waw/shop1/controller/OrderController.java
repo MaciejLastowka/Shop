@@ -7,6 +7,8 @@ import pl.great.waw.shop1.controller.dto.OrderDtoView;
 import pl.great.waw.shop1.domain.Orders;
 import pl.great.waw.shop1.service.OrderService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -25,5 +27,10 @@ public class OrderController {
         return orderService.findById(id);
     }
 
+
+//    @GetMapping(path= "/{userOrders}")
+//    public List<Orders> getAccountOrders(@PathVariable String name){
+//        return this.orderService.findAccountOrders(getAccountOrders());
+//    }
 
 }
