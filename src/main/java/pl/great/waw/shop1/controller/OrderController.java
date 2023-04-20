@@ -16,7 +16,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public OrderDto create(@RequestBody CartDto cartDto) {
+    public OrderDto create() {
         return orderService.create();
     }
 
@@ -25,6 +25,4 @@ public class OrderController {
     {
         return orderService.findById(id);
     }
-
-
 }

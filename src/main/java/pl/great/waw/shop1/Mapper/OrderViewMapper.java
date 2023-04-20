@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
-public abstract class OrderMapperView {
+public abstract class OrderViewMapper {
     @Autowired
     private OrderLineItemMapper orderLineItemMapper;
 

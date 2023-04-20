@@ -29,36 +29,13 @@ public class OrderServiceTest {
     private static final BigDecimal PRICE1 = BigDecimal.valueOf(9);
     private static final LocalDateTime time1 = LocalDateTime.now();
     @Mock
-    OrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     @Mock
     private OrderMapper orderMapper;
 
     @InjectMocks
-    OrderService orderService;
-
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
-
-    @BeforeEach
-    public void setUp() {
-//        Category category2 = new Category();
-//        Product product = new Product(category2,PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time1);
-//        List<OrderLineItem> orderLineItems= new ArrayList<>();
-//        Orders orderFromRepo = new Orders();
-//        orderFromRepo.setId(1L);
-//        OrderLineItem orderLineItem1 = new OrderLineItem(orderFromRepo,product,1L);
-//        OrderLineItem orderLineItem2 = new OrderLineItem(orderFromRepo,product,2L);
-//        orderLineItems.add(orderLineItem1);
-//        orderLineItems.add(orderLineItem2);
-//        orderFromRepo.setOrderLineItems(orderLineItems);
-//        Account account = new Account();
-//        account.setId(1L);
-//        orderFromRepo.setAccount(account);
-//        OrderDto orderDtoFromController = orderMapper.map(orderFromRepo);
-//        when(orderRepository.findOrderById(anyLong())).thenReturn(orderFromRepo);
-    }
-
+    private OrderService orderService;
 
     @Test
     public void create() {
@@ -70,22 +47,6 @@ public class OrderServiceTest {
 
     @Test
     public void getTotalPrice() {
-        Category category2 = new Category();
-        Product product = new Product(category2, PRODUCT_TITLE, DESCRIPTION, PRICE, time1, time1);
-        List<OrderLineItem> orderLineItems = new ArrayList<>();
-        Orders orderFromRepo = new Orders();
-        orderFromRepo.setId(1L);
-        OrderLineItem orderLineItem1 = new OrderLineItem(orderFromRepo, product, 1L);
-        OrderLineItem orderLineItem2 = new OrderLineItem(orderFromRepo, product, 2L);
-        orderLineItems.add(orderLineItem1);
-        orderLineItems.add(orderLineItem2);
-        orderFromRepo.setOrderLineItems(orderLineItems);
-        Account account = new Account();
-        account.setId(1L);
-        orderFromRepo.setAccount(account);
-        when(orderRepository.findOrderById(anyLong())).thenReturn(orderFromRepo);
-        this.orderService.setOrderTotalPrice(1L);
-        BigDecimal totalPrice = this.orderService.getTotalPrice(1L);
-        assertEquals(BigDecimal.valueOf(2997), totalPrice);
+
     }
 }

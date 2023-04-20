@@ -61,4 +61,9 @@ public class Cart {
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+    public void reset() {
+        this.cartLineItemList = new ArrayList<>();
+        this.totalAmount = BigDecimal.ZERO;
+    }
 }
