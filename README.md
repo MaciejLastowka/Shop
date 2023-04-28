@@ -10,8 +10,8 @@ Designed to manage products, user’s accounts, adding products to cart, and ord
 <h2 style="font-weight:bold; font-size:1.2em;">Technologies Used </h2>
 
 Backend:
-<br>
-<br>
+
+
 * Java 11 <br>
 * Spring Boot <br>
 * Rest API<br>
@@ -26,7 +26,7 @@ Backend:
 * Pgadmin<br>
 
 Frontend:
-<br>
+
 * Angular 11
 
 
