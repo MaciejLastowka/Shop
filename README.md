@@ -40,6 +40,12 @@ password: Maciek
 
 Project is: in progress.<br>
 <br>
+
+![image](https://github.com/MaciejLastowka/Shop/assets/120501693/2345df61-8e27-40dd-8b61-c40ac9d00874)
+![image](https://github.com/MaciejLastowka/Shop/assets/120501693/3976fb3d-b597-4c8b-93d6-5913686c6b6b)
+![image](https://github.com/MaciejLastowka/Shop/assets/120501693/199a04e1-faf4-4125-bba3-b6dd8e9ff638)
+![image](https://github.com/MaciejLastowka/Shop/assets/120501693/32cfb6fb-7e0c-411b-a013-fc9926b14c07)
+
 ![image](https://user-images.githubusercontent.com/120501693/235149307-9726c0e4-dfd6-4d7b-908b-73f96cc8d7af.png)
 ![image](https://user-images.githubusercontent.com/120501693/235149399-1ff40359-a9e3-448f-9ce5-5c6c6118df71.png)
 ![image](https://user-images.githubusercontent.com/120501693/235149538-f3d04849-9edf-457b-81b7-5a6d70baa2c5.png)
